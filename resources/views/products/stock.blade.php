@@ -70,11 +70,14 @@ $('#add_product').submit(function(e){
 		success: function(data){
 			//console.log(data);
 			$('#results').append(
-				'<tr><td>'+data.name+'</td><td>'+data.quantity+'</td><td>'+data.price+'</td><td id="price_'+rowCount+'">'+data.date+'</td><td>'+data.sub_total+'</td></tr>'
+				'<tr><td>'+data.name+'</td><td>'+data.quantity+'</td><td>'+data.price+'</td><td data-field-type="date"><input type="hidden" name="date" value="'+data.date+'">'+data.date+'</td><td>'+data.sub_total+'</td></tr>'
 			);
 
 			$('#results_total').html('<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>Total</td><td>$'+data.total+'</td></tr>');	
 			$('#total').val(data.total);	
+
+			$('#results tr').sort(function(a,b){
+    			return new Date($(a).find('input').val()).getTime() < new Date($(b).find('input').val()).getTime()}).appendTo('tbody');
 		}
 	});
 });

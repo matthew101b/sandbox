@@ -7,7 +7,7 @@
 			<h3>Add Stock</h3>
 			<form class="form-horizontal" id="add_product" action="/add" method="POST">
 				{{ csrf_field() }}
-
+				<input type="hidden" name="current_amount" value="0" id="total">
 				<div class="form-group">
 					<div class="col-lg-12">
 						<input type="text" name="product_name" placeholder="Product Name:">
@@ -47,14 +47,8 @@
 			<th>Sub Total</th>
 		</tr> 
 	</thead> 
-	<tfoot>
-    	<tr>
-    		<td>&nbsp;</td>
-    		<td>&nbsp;</td>
-    		<td>&nbsp;</td>
-      		<td>Total</td>
-      		<td>$</td>
-    	</tr>
+	<tfoot id="results_total">
+    	
   	</tfoot>
 	<tbody id="results"> 
 	
@@ -78,6 +72,9 @@ $('#add_product').submit(function(e){
 			$('#results').append(
 				'<tr><td>'+data.name+'</td><td>'+data.quantity+'</td><td>'+data.price+'</td><td id="price_'+rowCount+'">'+data.date+'</td><td>'+data.sub_total+'</td></tr>'
 			);
+
+			$('#results_total').html('<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>Total</td><td>$'+data.total+'</td></tr>');	
+			$('#total').val(data.total);	
 		}
 	});
 });

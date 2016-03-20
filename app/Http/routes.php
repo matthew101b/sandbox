@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', 'ProductController@index');
-Route::post('/add', 'ProductController@store');
+Route::get('/', 'productController@index');
+Route::post('/add', 'productController@store');
 
 /*
 |--------------------------------------------------------------------------

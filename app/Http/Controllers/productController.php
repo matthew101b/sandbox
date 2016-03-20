@@ -6,19 +6,26 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class ProductController extends Controller
+class productController extends Controller
 {
     public function index(){
-    	$webform = '';
-    	return view('products.stock', compact('form'));
+    	return view('products.stock');
     }
 
     public function store(Request $request){
+
     	$data['name'] = $request->product_name;
     	$data['quantity'] = $request->quantity;
     	$data['price'] = $request->price;
+    	$data['sub_total'] = $request->quantity * $request->price;
+    	$data['date'] = date('Y-m-d H:i:s');
+    	$data['total'] = $data['sub_total'] + $request->current_amount;
     	return response()->json($data);
+    	
     }
+
+
+
 
 
 }

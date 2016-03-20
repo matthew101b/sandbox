@@ -5,7 +5,7 @@
 	<div class="col-lg-12">
 		<div class="row">
 			<h3>Add Stock</h3>
-			<form class="form-horizontal" action"/" method="POST">
+			<form class="form-horizontal" action="/add" method="POST">
 				{{ csrf_field() }}
 
 				<div class="form-group">
@@ -35,5 +35,8 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	
 
+</script>
 @stop

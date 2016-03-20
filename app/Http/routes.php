@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'ProductController@index');
+Route::post('/add', 'ProductController@store');
 
 /*
 |--------------------------------------------------------------------------

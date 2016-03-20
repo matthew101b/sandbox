@@ -36,13 +36,37 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-lg-12" id="results">
-		
-	</div>
+	<div class="col-lg-12">
+<table class="table table-striped"> 
+	<thead> 
+		<tr> 
+			<th>Product Name</th> 
+			<th>Quantity</th> 
+			<th>Price</th> 
+			<th>Date</th>
+			<th>Sub Total</th>
+		</tr> 
+	</thead> 
+	<tfoot>
+    	<tr>
+    		<td>&nbsp;</td>
+    		<td>&nbsp;</td>
+    		<td>&nbsp;</td>
+      		<td>Total</td>
+      		<td>$</td>
+    	</tr>
+  	</tfoot>
+	<tbody id="results"> 
+	
+	</tbody> 
+</table>
 </div>
 <script type="text/javascript">
+
 $('#add_product').submit(function(e){
 	e.preventDefault();
+
+	var rowCount = $('#results tr').length;
 
 	$.ajax({
 		url: '/add',
@@ -52,7 +76,7 @@ $('#add_product').submit(function(e){
 		success: function(data){
 			//console.log(data);
 			$('#results').append(
-				'<span class="col-lg-12">'+data.name+' | '+data.quantity+' | '+data.price+' | 1 March 2016 </span>'
+				'<tr><td>'+data.name+'</td><td>'+data.quantity+'</td><td>'+data.price+'</td><td id="price_'+rowCount+'">'+data.date+'</td><td>'+data.sub_total+'</td></tr>'
 			);
 		}
 	});
